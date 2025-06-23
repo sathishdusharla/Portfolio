@@ -19,8 +19,7 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Replace with your actual form submission logic
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
@@ -68,36 +67,43 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="py-20 lg:py-32 relative overflow-hidden">
-      {/* Section divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
+      {/* Ultra dark glass background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black/95 via-gray-950/90 to-black/95 backdrop-blur-3xl" />
+      
+      {/* Section divider with glow */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent shadow-lg" 
+           style={{ filter: 'drop-shadow(0 0 10px rgba(168, 85, 247, 0.8))' }} />
 
-      <div className="max-w-3xl xl:max-w-4xl mx-auto px-4 sm:px-8 xl:px-0" ref={ref}>
+      <div className="max-w-3xl xl:max-w-4xl mx-auto px-4 sm:px-8 xl:px-0 relative z-10" ref={ref}>
+        {/* Enhanced heading with ultra glass */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">
-            <span className="text-gray-300">Get In </span>
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Touch
-            </span>
-          </h2>
-          <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto font-light">
-            Let's collaborate on your next project. I'm always excited to work on innovative solutions.
-          </p>
+          <div className="bg-black/40 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 shadow-2xl">
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">
+              <span className="text-gray-300">Get In </span>
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Touch
+              </span>
+            </h2>
+            <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto font-light">
+              Let's collaborate on your next project. I'm always excited to work on innovative solutions.
+            </p>
+          </div>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-14">
-          {/* Contact Information */}
+          {/* Enhanced contact information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="space-y-8"
           >
-            <div>
+            <div className="bg-black/40 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 shadow-2xl">
               <h3 className="text-xl font-semibold text-white mb-5">Let's start a conversation</h3>
               <p className="text-gray-300 leading-relaxed mb-7 text-sm md:text-base">
                 I'm currently available for new opportunities and exciting projects. 
@@ -106,7 +112,7 @@ const Contact: React.FC = () => {
               </p>
             </div>
 
-            {/* Contact info items */}
+            {/* Enhanced contact info items */}
             <div className="space-y-5">
               {contactInfo.map((item, index) => (
                 <motion.a
@@ -115,10 +121,10 @@ const Contact: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                  className="flex items-center space-x-4 p-3 rounded-xl border border-gray-700 hover:border-gray-600 hover:bg-gray-800/30 transition-all duration-300 group"
-                  whileHover={{ scale: 1.02 }}
+                  className="flex items-center space-x-4 p-4 bg-black/40 backdrop-blur-2xl border border-white/20 rounded-2xl hover:border-white/30 hover:bg-black/60 transition-all duration-300 group shadow-xl"
+                  whileHover={{ scale: 1.02, y: -2 }}
                 >
-                  <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500/80 to-pink-500/80 backdrop-blur-xl rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg border border-white/20">
                     <item.icon className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -129,50 +135,55 @@ const Contact: React.FC = () => {
               ))}
             </div>
 
-            {/* Social links */}
+            {/* Enhanced social links */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.8 }}
               className="pt-7"
             >
-              <h4 className="text-base font-semibold text-white mb-3">Follow me</h4>
-              <div className="flex space-x-3">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 border border-gray-600 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:border-purple-500 hover:bg-purple-500/10 transition-all duration-300"
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    whileTap={{ scale: 0.9 }}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-                    transition={{ delay: 1 + index * 0.1 }}
-                  >
-                    <social.icon size={18} />
-                  </motion.a>
-                ))}
+              <div className="bg-black/40 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-xl">
+                <h4 className="text-base font-semibold text-white mb-4">Follow me</h4>
+                <div className="flex space-x-4">
+                  {socialLinks.map((social, index) => (
+                    <motion.a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 bg-black/60 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:border-purple-500/60 hover:bg-purple-500/20 transition-all duration-300 shadow-lg"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.9 }}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+                      transition={{ delay: 1 + index * 0.1 }}
+                    >
+                      <social.icon size={18} />
+                    </motion.a>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Enhanced contact form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative"
           >
-            {/* Glowing background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-2xl blur-xl" />
+            {/* Enhanced glowing background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-3xl blur-2xl" />
             
-            {/* Form container */}
-            <div className="relative bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-7">
-              <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Enhanced form container */}
+            <div className="relative bg-black/60 backdrop-blur-2xl border border-white/20 rounded-3xl p-8 shadow-2xl">
+              {/* Inner glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/20 rounded-3xl pointer-events-none" />
+              
+              <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
                 <div>
-                  <label htmlFor="name" className="block text-xs font-medium text-gray-300 mb-1">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                     Your Name
                   </label>
                   <input
@@ -182,13 +193,13 @@ const Contact: React.FC = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 text-sm"
+                    className="w-full px-4 py-3 bg-black/40 backdrop-blur-xl border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500/60 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 text-sm shadow-lg"
                     placeholder="Enter your name"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-xs font-medium text-gray-300 mb-1">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
                     Your Email
                   </label>
                   <input
@@ -198,13 +209,13 @@ const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 text-sm"
+                    className="w-full px-4 py-3 bg-black/40 backdrop-blur-xl border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500/60 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 text-sm shadow-lg"
                     placeholder="Enter your email"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-xs font-medium text-gray-300 mb-1">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
                     Your Message
                   </label>
                   <textarea
@@ -213,8 +224,8 @@ const Contact: React.FC = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={4}
-                    className="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 resize-none text-sm"
+                    rows={5}
+                    className="w-full px-4 py-3 bg-black/40 backdrop-blur-xl border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500/60 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 resize-none text-sm shadow-lg"
                     placeholder="Tell me about your project..."
                   />
                 </div>
@@ -222,8 +233,8 @@ const Contact: React.FC = () => {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center space-x-2 px-5 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white font-semibold hover:from-purple-700 hover:to-pink-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 text-sm"
-                  whileHover={{ scale: 1.02 }}
+                  className="w-full flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-purple-600/80 to-pink-600/80 backdrop-blur-xl rounded-xl text-white font-semibold hover:from-purple-700/90 hover:to-pink-700/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 text-sm border border-white/20 shadow-2xl"
+                  whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(168, 85, 247, 0.4)" }}
                   whileTap={{ scale: 0.98 }}
                 >
                   {isSubmitting ? (
@@ -236,15 +247,15 @@ const Contact: React.FC = () => {
                   )}
                 </motion.button>
 
-                {/* Status message */}
+                {/* Enhanced status message */}
                 {submitStatus !== 'idle' && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className={`text-center p-2 rounded-xl text-xs mt-2 ${
+                    className={`text-center p-3 rounded-xl text-sm mt-3 backdrop-blur-xl border shadow-lg ${
                       submitStatus === 'success'
-                        ? 'bg-green-500/10 text-green-400 border border-green-500/20'
-                        : 'bg-red-500/10 text-red-400 border border-red-500/20'
+                        ? 'bg-green-500/20 text-green-300 border-green-500/30'
+                        : 'bg-red-500/20 text-red-300 border-red-500/30'
                     }`}
                   >
                     {submitStatus === 'success'

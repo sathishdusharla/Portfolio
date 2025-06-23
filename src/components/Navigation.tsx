@@ -6,7 +6,6 @@ import {
 } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-// Map section to color for top line
 const sectionLineColors: Record<string, string> = {
   about: 'from-purple-400 to-pink-400',
   education: 'from-blue-400 to-cyan-400',
@@ -60,34 +59,24 @@ const Navigation: React.FC = () => {
     }
   };
 
-  // Resume navigation handler
   const goToResume = () => {
     setSidebarOpen(false);
     navigate('/resume');
   };
 
-  // EXACT Footer Logo Animation, just smaller for sidebar
   const AnimatedLogo = () => (
     <motion.div
-      className="relative w-12 h-12 bg-gradient-to-br from-purple-500 via-pink-500 to-cyan-500 rounded-2xl flex items-center justify-center overflow-hidden cursor-pointer"
-      whileHover={{ rotate: 5, scale: 1.05 }}
+      className="relative w-12 h-12 bg-gradient-to-br from-purple-500 via-pink-500 to-cyan-500 rounded-2xl flex items-center justify-center overflow-hidden cursor-pointer backdrop-blur-xl border border-white/20 shadow-2xl"
+      whileHover={{ rotate: 5, scale: 1.05, boxShadow: "0 0 30px rgba(168, 85, 247, 0.6)" }}
       transition={{ duration: 0.3 }}
       onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
       aria-label="Go to top"
     >
-      {/* Animated background */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-600 to-cyan-600"
-        animate={{
-          rotate: [0, 360],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
-        }}
+        animate={{ rotate: [0, 360] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
       />
-      {/* Logo content */}
       <div className="relative z-10 flex items-center justify-center">
         <motion.div
           className="text-white font-bold text-xl font-jetbrains"
@@ -98,68 +87,50 @@ const Navigation: React.FC = () => {
               "0 0 10px rgba(255,255,255,0.5)"
             ]
           }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
           SD
         </motion.div>
-        {/* Sparkle effect */}
         <motion.div
           className="absolute top-1 right-1"
-          animate={{
-            scale: [0, 1, 0],
-            rotate: [0, 180, 360]
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          animate={{ scale: [0, 1, 0], rotate: [0, 180, 360] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
           <Sparkles size={12} className="text-white/80" />
         </motion.div>
       </div>
-      {/* Glow effect */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-br from-purple-500 via-pink-500 to-cyan-500 rounded-2xl blur-xl opacity-50"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.5, 0.8, 0.5]
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       />
     </motion.div>
   );
 
-  // Top line that changes color according to section
   const TopLine = () => (
     <motion.div
       className={`fixed top-0 left-0 right-0 h-[3px] z-[60] bg-gradient-to-r ${sectionLineColors[activeSection] || 'from-purple-400 to-pink-400'}`}
       layout
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      style={{ boxShadow: '0 2px 16px 0 rgba(168,85,247,0.15)' }}
+      style={{ 
+        boxShadow: '0 2px 16px 0 rgba(168,85,247,0.4)',
+        filter: 'drop-shadow(0 0 10px rgba(168, 85, 247, 0.8))'
+      }}
     />
   );
 
-  // Hide nav on resume page
   if (location.pathname === '/resume') return null;
 
   return (
     <>
       <TopLine />
 
-      {/* Hamburger/Close for mobile */}
+      {/* Enhanced hamburger with ultra glass */}
       <button
-        className="fixed top-6 left-6 z-[100] flex items-center justify-center w-11 h-11 rounded-full bg-black/90 md:hidden shadow-xl"
+        className="fixed top-6 left-6 z-[100] flex items-center justify-center w-11 h-11 rounded-full bg-black/80 backdrop-blur-2xl md:hidden shadow-2xl border border-white/20"
         onClick={() => setSidebarOpen(!sidebarOpen)}
         aria-label={sidebarOpen ? "Close navigation" : "Open navigation"}
+        style={{ boxShadow: '0 0 30px rgba(0, 0, 0, 0.5)' }}
       >
         {sidebarOpen ? (
           <X size={28} className="text-purple-400" />
@@ -168,34 +139,33 @@ const Navigation: React.FC = () => {
         )}
       </button>
 
-      {/* Sidebar overlay for mobile */}
+      {/* Enhanced sidebar with ultra glass */}
       <AnimatePresence>
         {sidebarOpen && (
           <motion.div
-            className="fixed inset-0 z-[99] bg-black/70 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-[99] bg-black/80 backdrop-blur-xl md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSidebarOpen(false)}
           >
             <motion.aside
-              className="absolute left-0 top-0 h-full w-4/5 max-w-xs bg-[#101014] shadow-2xl flex flex-col justify-between"
+              className="absolute left-0 top-0 h-full w-4/5 max-w-xs bg-black/90 backdrop-blur-2xl shadow-2xl flex flex-col justify-between border-r border-white/20"
               initial={{ x: -300 }}
               animate={{ x: 0 }}
               exit={{ x: -300 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               onClick={e => e.stopPropagation()}
             >
-              {/* Add padding-top to avoid collision with X */}
               <div className="flex flex-col gap-2 px-6 pt-20">
                 {navItems.map(item => (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`flex items-center gap-4 py-3 px-3 rounded-xl text-lg font-medium transition-all
+                    className={`flex items-center gap-4 py-3 px-3 rounded-xl text-lg font-medium transition-all backdrop-blur-xl border
                       ${activeSection === item.id
-                        ? 'bg-purple-800/60 text-purple-200'
-                        : 'text-gray-300 hover:bg-gray-800/60'}
+                        ? 'bg-gradient-to-r from-purple-500/60 to-pink-500/60 text-white border-white/30 shadow-xl'
+                        : 'text-gray-300 hover:bg-white/10 border-transparent hover:border-white/20'}
                     `}
                   >
                     {item.icon}
@@ -204,10 +174,10 @@ const Navigation: React.FC = () => {
                 ))}
               </div>
               <div className="px-6 pb-8">
-                <div className="border-t border-gray-800 mb-4" />
+                <div className="border-t border-white/20 mb-4" />
                 <button
                   onClick={goToResume}
-                  className="flex items-center gap-3 text-gray-300 hover:text-white text-lg w-full"
+                  className="flex items-center gap-3 text-gray-300 hover:text-white text-lg w-full py-3 px-3 rounded-xl hover:bg-white/10 transition-all backdrop-blur-xl"
                 >
                   <FileBadge2 size={22} />
                   <span>Resume</span>
@@ -218,40 +188,40 @@ const Navigation: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Desktop vertical nav */}
-      <nav
-        className="hidden md:flex fixed left-0 top-1/2 -translate-y-1/2 z-50 flex-col items-center py-4 px-1 bg-black/90 rounded-[2.5rem] m-2 shadow-xl
-          w-[70px] h-[420px] 
-          lg:w-[90px] lg:h-[600px]
-          lg:py-6 lg:px-2"
-      >
-        {/* Animated Logo */}
-        <div className="mb-6 lg:mb-8 flex flex-col items-center">
+      {/* Enhanced desktop nav with ultra glass */}
+      <nav className="hidden md:flex fixed left-0 top-1/2 -translate-y-1/2 z-50 flex-col items-center py-4 px-1 bg-black/80 backdrop-blur-2xl rounded-[2.5rem] m-2 shadow-2xl border border-white/20 w-[70px] h-[420px] lg:w-[90px] lg:h-[600px] lg:py-6 lg:px-2">
+        {/* Inner glow */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-pink-500/10 rounded-[2.5rem] pointer-events-none" />
+        
+        <div className="mb-6 lg:mb-8 flex flex-col items-center relative z-10">
           <AnimatedLogo />
         </div>
-        {/* Navigation Icons */}
-        <div className="flex flex-col items-center gap-4 lg:gap-5 flex-1">
+        
+        <div className="flex flex-col items-center gap-4 lg:gap-5 flex-1 relative z-10">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`flex items-center justify-center w-9 h-9 lg:w-10 lg:h-10 rounded-xl transition-all
+              className={`flex items-center justify-center w-9 h-9 lg:w-10 lg:h-10 rounded-xl transition-all backdrop-blur-xl border shadow-lg
                 ${activeSection === item.id
-                  ? 'text-purple-400'
-                  : 'text-gray-400 hover:text-purple-300'}
+                  ? 'text-white bg-gradient-to-r from-purple-500/60 to-pink-500/60 border-white/30'
+                  : 'text-gray-400 hover:text-white bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'}
               `}
               aria-label={item.label}
+              style={{
+                boxShadow: activeSection === item.id ? '0 0 20px rgba(168, 85, 247, 0.4)' : undefined
+              }}
             >
               {item.icon}
             </button>
           ))}
         </div>
-        {/* Divider and Resume at bottom */}
-        <div className="flex flex-col items-center mt-4 lg:mt-6 w-full">
-          <div className="w-7 h-px lg:w-8 bg-gray-700 my-2 lg:my-3" />
+        
+        <div className="flex flex-col items-center mt-4 lg:mt-6 w-full relative z-10">
+          <div className="w-7 h-px lg:w-8 bg-white/20 my-2 lg:my-3" />
           <button
             onClick={goToResume}
-            className="flex items-center justify-center w-9 h-9 lg:w-10 lg:h-10 rounded-xl transition-all text-gray-400 hover:text-purple-300"
+            className="flex items-center justify-center w-9 h-9 lg:w-10 lg:h-10 rounded-xl transition-all text-gray-400 hover:text-white bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 backdrop-blur-xl shadow-lg"
             aria-label="Resume"
           >
             <FileBadge2 size={22} />

@@ -13,7 +13,6 @@ const CustomCursor: React.FC = () => {
     const handleMouseEnter = () => setIsHovering(true);
     const handleMouseLeave = () => setIsHovering(false);
 
-    // Add hover listeners to interactive elements
     const interactiveElements = document.querySelectorAll('button, a, input, textarea');
     
     interactiveElements.forEach(el => {
@@ -34,13 +33,13 @@ const CustomCursor: React.FC = () => {
 
   return (
     <>
-      {/* Main cursor */}
+      {/* Enhanced main cursor with ultra glow */}
       <motion.div
-        className="fixed w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full pointer-events-none z-50 mix-blend-difference hidden lg:block"
+        className="fixed w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full pointer-events-none z-50 mix-blend-difference hidden lg:block shadow-2xl"
         animate={{
-          x: mousePosition.x - 8,
-          y: mousePosition.y - 8,
-          scale: isHovering ? 1.5 : 1,
+          x: mousePosition.x - 12,
+          y: mousePosition.y - 12,
+          scale: isHovering ? 2 : 1,
         }}
         transition={{
           type: "spring",
@@ -48,22 +47,29 @@ const CustomCursor: React.FC = () => {
           damping: 28,
           mass: 0.5,
         }}
+        style={{
+          filter: 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.8))',
+        }}
       />
       
-      {/* Trailing cursor */}
+      {/* Enhanced trailing cursor with ultra glass */}
       <motion.div
-        className="fixed w-8 h-8 border-2 border-purple-500/50 rounded-full pointer-events-none z-40 hidden lg:block"
+        className="fixed w-12 h-12 border-2 border-purple-500/60 backdrop-blur-xl rounded-full pointer-events-none z-40 hidden lg:block shadow-xl"
         animate={{
-          x: mousePosition.x - 16,
-          y: mousePosition.y - 16,
-          scale: isHovering ? 2 : 1,
-          opacity: isHovering ? 0.5 : 0.8,
+          x: mousePosition.x - 24,
+          y: mousePosition.y - 24,
+          scale: isHovering ? 2.5 : 1,
+          opacity: isHovering ? 0.6 : 0.8,
         }}
         transition={{
           type: "spring",
           stiffness: 150,
           damping: 15,
           mass: 0.1,
+        }}
+        style={{
+          background: 'rgba(0, 0, 0, 0.2)',
+          boxShadow: '0 0 30px rgba(168, 85, 247, 0.3)',
         }}
       />
     </>
