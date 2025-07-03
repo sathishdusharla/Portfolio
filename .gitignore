@@ -23,7 +23,3 @@ dist-ssr
 *.sln
 *.sw?
 .env
-
-# Large video files
-public/webanimation.mp4
-*.mp4
