@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS for responsive video backgrounds and gradients */
+@layer utilities {
+  .bg-gradient-radial {
+    background: radial-gradient(var(--tw-gradient-stops));
+  }
+}
+
+/* Video background responsive utilities */
+.hero-video-responsive {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Media queries for better mobile video handling */
+@media (max-width: 768px) {
+  .hero-video-responsive {
+    /* On mobile, ensure video covers the container properly */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  /* Ensure the hero section doesn't cause performance issues on mobile */
+  .hero-section {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+  
+  /* Reduce video quality on mobile for better performance */
+  .hero-video-responsive {
+    filter: brightness(0.8);
+  }
+}
+
+@media (min-width: 769px) {
+  .hero-video-responsive {
+    /* On desktop, maintain proper aspect ratio */
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+
+/* Ensure video doesn't interfere with pointer events */
+.hero-video-responsive {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6b21a8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed;
+}
+
+/* Video loading optimization */
+video {
+  background-color: #000;
+}
+
+/* Preload optimization for better UX */
+@media (prefers-reduced-motion: reduce) {
+  .hero-video-responsive {
+    animation: none;
+  }
+}
