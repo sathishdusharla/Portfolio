@@ -14,9 +14,9 @@ const Hero: React.FC = () => {
 
   useEffect(() => {
     if (isInView) {
-      controls.start({ opacity: 1, y: 0, transition: { duration: 0.8 } });
+      controls.start({ opacity: 1, y: 0, transition: { duration: 0.5 } });
     } else {
-      controls.start({ opacity: 0, y: 100, transition: { duration: 0.8 } });
+      controls.start({ opacity: 0, y: 50, transition: { duration: 0.3 } });
     }
   }, [isInView, controls]);
 
@@ -29,7 +29,6 @@ const Hero: React.FC = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Handle video playback
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
@@ -68,7 +67,7 @@ const Hero: React.FC = () => {
       ref={sectionRef}
       className="min-h-screen flex items-center justify-center relative overflow-hidden snap-start hero-section"
     >
-      {/* Video Background with responsive sizing */}
+      {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video
           ref={videoRef}
@@ -80,8 +79,6 @@ const Hero: React.FC = () => {
           preload="metadata"
         >
           <source src="/webanimation.mp4" type="video/mp4" />
-          <source src="/src/assets/hero-background.webm" type="video/webm" />
-          {/* Fallback image for browsers that don't support video */}
           <img 
             src="/Copy of laptopwal-2.png" 
             alt="Hero Background" 
@@ -89,60 +86,65 @@ const Hero: React.FC = () => {
           />
         </video>
         
-        {/* Dark overlay for better text readability - Much darker */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-purple-900/60 to-black/85" />
-        
-        {/* Additional heavy overlay for all devices */}
         <div className="absolute inset-0 bg-black/60" />
       </div>
 
-      {/* Subtle animated background grid (reduced opacity) */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none z-10">
-        <div
+      {/* Animated background grid */}
+      <div className="absolute inset-0 opacity-8 pointer-events-none z-10">
+        <motion.div
           className="absolute inset-0"
+          animate={{
+            backgroundPosition: ['0px 0px', '50px 50px'],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
           style={{
             backgroundImage: `
-              linear-gradient(rgba(168, 85, 247, 0.05) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px)
+              linear-gradient(rgba(168, 85, 247, 0.08) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(168, 85, 247, 0.08) 1px, transparent 1px)
             `,
             backgroundSize: '50px 50px',
           }}
         />
       </div>
 
-      {/* Subtle mouse follower effect (reduced opacity) */}
+      {/* Mouse follower effect */}
       <motion.div
-        className="fixed w-96 h-96 pointer-events-none z-20"
+        className="fixed w-80 h-80 pointer-events-none z-20 hidden lg:block"
         animate={{
-          x: mousePosition.x - 192,
-          y: mousePosition.y - 192,
+          x: mousePosition.x - 160,
+          y: mousePosition.y - 160,
         }}
-        transition={{ type: "spring", stiffness: 50, damping: 30 }}
+        transition={{ type: "spring", stiffness: 80, damping: 40 }}
       >
-        <div className="w-full h-full bg-gradient-radial from-purple-500/10 via-pink-500/5 to-transparent rounded-full blur-3xl" />
+        <div className="w-full h-full bg-gradient-radial from-purple-500/15 via-pink-500/8 to-transparent rounded-full blur-2xl" />
       </motion.div>
 
-      {/* Main content with entrance/exit animation */}
+      {/* Main content */}
       <motion.div
         animate={controls}
-        initial={{ opacity: 0, y: 100 }}
-        className="max-w-3xl xl:max-w-4xl mx-auto px-4 sm:px-8 xl:px-0 z-30 relative"
+        initial={{ opacity: 0, y: 50 }}
+        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-30 relative"
       >
         <div className="text-left">
-          {/* Animated intro badge */}
+          {/* Intro badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-500/15 to-pink-500/15 border border-purple-500/30 rounded-full px-5 py-1.5 mb-7 backdrop-blur-sm"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/40 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm"
           >
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
             >
               <Code2 size={14} className="text-purple-400" />
             </motion.div>
-            <span className="text-purple-300 text-xs font-medium">Software Engineer & Full Stack Developer</span>
+            <span className="text-purple-300 text-xs sm:text-sm font-medium">Software Engineer & Full Stack Developer</span>
             <motion.div
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -151,27 +153,27 @@ const Hero: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Main heading with advanced animations */}
+          {/* Main heading */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-6"
           >
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-3 leading-tight text-left">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-3 leading-tight text-left">
               <motion.span
                 className="block text-gray-200 mb-1"
-                initial={{ opacity: 0, x: -50 }}
+                initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
               >
                 Hi, I'm
               </motion.span>
               <motion.span
                 className="block bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent"
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.8 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
                 style={{
                   backgroundSize: '200% 200%',
                 }}
@@ -181,7 +183,7 @@ const Hero: React.FC = () => {
                     backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
                   }}
                   transition={{
-                    duration: 5,
+                    duration: 4,
                     repeat: Infinity,
                     ease: "linear"
                   }}
@@ -191,7 +193,7 @@ const Hero: React.FC = () => {
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                   }}
-                  className="text-4xl md:text-6xl lg:text-7xl font-extrabold"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold"
                 >
                   Sathish Dusharla
                 </motion.span>
@@ -199,14 +201,14 @@ const Hero: React.FC = () => {
             </h1>
           </motion.div>
 
-          {/* Animated subtitle */}
+          {/* Subtitle */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="mb-10"
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mb-8"
           >
-            <p className="text-base md:text-xl text-gray-300 max-w-4xl mx-0 leading-relaxed text-left">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-4xl mx-0 leading-relaxed text-left">
               A passionate{' '}
               <motion.span
                 className="text-purple-300 font-semibold"
@@ -229,24 +231,25 @@ const Hero: React.FC = () => {
 
           {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            className="flex flex-row gap-3 justify-start items-center mb-12"
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-3 justify-start items-start sm:items-center mb-10"
           >
             <motion.button
               onClick={scrollToAbout}
-              className="group relative px-4 sm:px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-semibold overflow-hidden text-xs sm:text-sm shadow-lg shadow-purple-500/25"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="group relative px-4 sm:px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-semibold overflow-hidden text-sm sm:text-base shadow-lg shadow-purple-500/25 w-full sm:w-auto"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.2 }}
             >
-              <span className="relative z-10 flex items-center space-x-1 sm:space-x-2">
+              <span className="relative z-10 flex items-center justify-center space-x-2">
                 <span>Explore My Work</span>
                 <motion.div
-                  animate={{ x: [0, 5, 0] }}
+                  animate={{ y: [0, 3, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                 >
-                  <ArrowDown size={14} />
+                  <ArrowDown size={16} />
                 </motion.div>
               </span>
               <motion.div
@@ -259,48 +262,59 @@ const Hero: React.FC = () => {
 
             <motion.button
               onClick={handleResumeClick}
-              className="group px-4 sm:px-6 py-3 border-2 border-gray-500 rounded-full text-gray-200 font-semibold hover:border-purple-400 hover:text-white transition-all duration-300 text-xs sm:text-sm backdrop-blur-sm"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="group px-4 sm:px-6 py-3 border-2 border-gray-500 rounded-full text-gray-200 font-semibold hover:border-purple-400 hover:text-white transition-all duration-300 text-sm sm:text-base backdrop-blur-sm w-full sm:w-auto"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.2 }}
             >
-              <span className="flex items-center space-x-1 sm:space-x-2">
+              <span className="flex items-center justify-center space-x-2">
                 <span>View Resume</span>
                 <motion.div
                   animate={{ y: [0, -2, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                 >
-                  <ArrowDown size={14} className="rotate-180" />
+                  <ArrowDown size={16} className="rotate-180" />
                 </motion.div>
               </span>
             </motion.button>
           </motion.div>
 
-          {/* Social Links with color on hover */}
-          <div className="flex justify-start space-x-4 mb-14">
-            {socialLinks.map((social) => (
-              <a
+          {/* Social Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="flex justify-start space-x-4 mb-12"
+          >
+            {socialLinks.map((social, index) => (
+              <motion.a
                 key={social.label}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`group w-10 h-10 border border-gray-500 rounded-full flex items-center justify-center text-gray-300 transition-all duration-300 backdrop-blur-sm hover:bg-white/5 ${social.color}`}
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.8 + index * 0.1, duration: 0.3 }}
               >
                 <social.icon size={16} />
-              </a>
+              </motion.a>
             ))}
-          </div>
+          </motion.div>
 
-          {/* Scroll indicator with enhanced animation */}
+          {/* Scroll indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 2 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30"
+            transition={{ duration: 0.5, delay: 1.2 }}
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 hidden md:block"
           >
             <motion.button
               onClick={scrollToAbout}
               className="group flex flex-col items-center space-y-2 text-gray-300 hover:text-white transition-colors duration-300"
-              animate={{ y: [0, 10, 0] }}
+              animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
               <span className="text-xs font-medium">Scroll to explore</span>

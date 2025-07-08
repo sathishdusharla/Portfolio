@@ -41,7 +41,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 2200); // Reduced from 3000 to 2200
 
     return () => clearTimeout(timer);
   }, []);
@@ -57,7 +57,7 @@ function App() {
               key="main"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
             >
               <Routes>
                 <Route path="/" element={<MainPage />} />

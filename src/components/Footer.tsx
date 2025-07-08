@@ -23,17 +23,12 @@ const FooterContact: React.FC = () => {
           />
         </video>
         
-        {/* Enhanced dark overlay with premium gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-purple-950/70 to-black/90" />
-        
-        {/* Additional heavy overlay */}
         <div className="absolute inset-0 bg-black/70" />
-        
-        {/* Glossy overlay effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] via-transparent to-white/[0.01]" />
       </div>
 
-      {/* Enhanced animated background grid */}
+      {/* Animated background grid */}
       <div className="absolute inset-0 opacity-15 pointer-events-none z-10">
         <motion.div
           className="absolute inset-0"
@@ -41,7 +36,7 @@ const FooterContact: React.FC = () => {
             backgroundPosition: ['0px 0px', '50px 50px'],
           }}
           transition={{
-            duration: 20,
+            duration: 15,
             repeat: Infinity,
             ease: 'linear',
           }}
@@ -56,24 +51,24 @@ const FooterContact: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-30 py-20 px-4 sm:px-8 xl:px-0">
-        <div className="max-w-2xl sm:max-w-3xl xl:max-w-4xl mx-auto">
+      <div className="relative z-30 py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12 sm:mb-16"
           >
             <motion.div
-              className="inline-flex items-center space-x-2 bg-white/5 border border-white/20 rounded-full px-6 py-2 mb-6 backdrop-blur-xl shadow-lg shadow-purple-500/20"
+              className="inline-flex items-center space-x-2 bg-white/5 border border-white/20 rounded-full px-4 sm:px-6 py-2 mb-6 backdrop-blur-xl shadow-lg shadow-purple-500/20"
               style={{
                 background: 'linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))',
               }}
             >
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
               >
                 <Mail size={16} className="text-purple-300 drop-shadow-lg" />
               </motion.div>
@@ -86,7 +81,7 @@ const FooterContact: React.FC = () => {
               </motion.div>
             </motion.div>
 
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-white drop-shadow-2xl">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-white drop-shadow-2xl">
               Let's{' '}
               <span 
                 className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent"
@@ -99,15 +94,15 @@ const FooterContact: React.FC = () => {
               </span>{' '}
               Together
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-6 rounded-full shadow-lg shadow-purple-500/50" />
+            <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-6 rounded-full shadow-lg shadow-purple-500/50" />
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            {/* Left: Enhanced Info Section */}
+            {/* Left: Info Section */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
               className="space-y-6"
             >
               {/* Logo and Main Content */}
@@ -120,12 +115,12 @@ const FooterContact: React.FC = () => {
                 <motion.img 
                   src="/logoport.png" 
                   alt="SD Logo" 
-                  className="w-16 h-16 object-contain mb-4 drop-shadow-xl"
+                  className="w-14 h-14 sm:w-16 sm:h-16 object-contain mb-4 drop-shadow-xl"
                   whileHover={{ scale: 1.05, rotate: 5 }}
                   transition={{ duration: 0.3 }}
                 />
                 
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight mb-4 drop-shadow-lg">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white leading-tight mb-4 drop-shadow-lg">
                   Ready to bring your next{' '}
                   <span 
                     className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
@@ -136,7 +131,7 @@ const FooterContact: React.FC = () => {
                   to life?
                 </h3>
                 
-                <p className="text-gray-200 text-base leading-relaxed drop-shadow-lg">
+                <p className="text-gray-200 text-sm sm:text-base leading-relaxed drop-shadow-lg">
                   I'm passionate about collaborating on innovative projects, from cutting-edge web applications to AI-powered solutions. Let's discuss how we can create something extraordinary together.
                 </p>
               </div>
@@ -151,17 +146,17 @@ const FooterContact: React.FC = () => {
                 ].map((item, index) => (
                   <motion.div
                     key={item.label}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 * index }}
-                    whileHover={{ y: -5, scale: 1.02 }}
+                    transition={{ duration: 0.3, delay: 0.05 * index }}
+                    whileHover={{ y: -3, scale: 1.02 }}
                     className="bg-white/5 backdrop-blur-xl rounded-xl p-3 border border-white/10 shadow-xl shadow-gray-900/20"
                     style={{
                       background: 'linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))',
                     }}
                   >
-                    <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${item.color} flex items-center justify-center mb-2 shadow-lg`}>
-                      <item.icon size={16} className="text-white drop-shadow-lg" />
+                    <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-r ${item.color} flex items-center justify-center mb-2 shadow-lg`}>
+                      <item.icon size={14} className="text-white drop-shadow-lg" />
                     </div>
                     <p className="text-gray-300 text-xs font-medium drop-shadow-lg">{item.label}</p>
                     <p className="text-white text-sm font-semibold drop-shadow-lg">{item.value}</p>
@@ -169,7 +164,7 @@ const FooterContact: React.FC = () => {
                 ))}
               </div>
 
-              {/* Enhanced Social Links */}
+              {/* Social Links */}
               <div 
                 className="bg-white/5 backdrop-blur-xl rounded-xl p-4 border border-white/10 shadow-xl shadow-purple-500/10"
                 style={{
@@ -189,7 +184,7 @@ const FooterContact: React.FC = () => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`w-10 h-10 rounded-lg bg-gradient-to-r ${social.bg} flex items-center justify-center text-white transition-all duration-300 shadow-lg ${social.color}`}
+                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-r ${social.bg} flex items-center justify-center text-white transition-all duration-300 shadow-lg ${social.color}`}
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -200,11 +195,11 @@ const FooterContact: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Right: Enhanced Contact Form */}
+            {/* Right: Contact Form */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl shadow-purple-500/10"
               style={{
                 background: 'linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))',
@@ -287,7 +282,7 @@ const FooterContact: React.FC = () => {
                 <motion.button
                   type="submit"
                   className="w-full py-3 rounded-xl text-white font-bold text-sm shadow-2xl shadow-purple-500/30 relative overflow-hidden group"
-                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileHover={{ scale: 1.02, y: -1 }}
                   whileTap={{ scale: 0.98 }}
                   style={{
                     background: 'linear-gradient(135deg, rgba(168,85,247,0.9), rgba(236,72,153,0.8))',
@@ -296,7 +291,7 @@ const FooterContact: React.FC = () => {
                   <span className="relative z-10 flex items-center justify-center space-x-2 drop-shadow-lg">
                     <span>Send Message</span>
                     <motion.div
-                      animate={{ x: [0, 3, 0] }}
+                      animate={{ x: [0, 2, 0] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
                     >
                       <Send size={14} />
@@ -309,11 +304,11 @@ const FooterContact: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Enhanced Footer */}
+          {/* Footer */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             className="mt-12 pt-6 border-t border-white/10"
           >
             <div 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code2, Sparkles, Star, Zap, ChevronRight } from 'lucide-react';
+import { Code2, Sparkles, Star, Zap, ChevronRight, Terminal, Database, Globe } from 'lucide-react';
 
 const Preloader: React.FC = () => {
   const [loadingStage, setLoadingStage] = useState(0);
@@ -8,26 +8,26 @@ const Preloader: React.FC = () => {
 
   useEffect(() => {
     const stages = [
-      { delay: 500, stage: 1 },
-      { delay: 1200, stage: 2 },
-      { delay: 2000, stage: 3 },
-      { delay: 2800, stage: 4 },
+      { delay: 300, stage: 1 },
+      { delay: 800, stage: 2 },
+      { delay: 1300, stage: 3 },
+      { delay: 1800, stage: 4 },
     ];
 
     stages.forEach(({ delay, stage }) => {
       setTimeout(() => setLoadingStage(stage), delay);
     });
 
-    // Progress animation
+    // Faster progress animation
     const progressInterval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(progressInterval);
           return 100;
         }
-        return prev + Math.random() * 15;
+        return prev + Math.random() * 25;
       });
-    }, 200);
+    }, 150);
 
     return () => clearInterval(progressInterval);
   }, []);
@@ -37,10 +37,10 @@ const Preloader: React.FC = () => {
       className="fixed inset-0 flex items-center justify-center z-50 overflow-hidden"
       exit={{ 
         opacity: 0,
-        scale: 0.8,
-        filter: "blur(10px)"
+        scale: 0.9,
+        filter: "blur(8px)"
       }}
-      transition={{ duration: 0.8, ease: "easeInOut" }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
     >
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
@@ -61,127 +61,121 @@ const Preloader: React.FC = () => {
         </video>
         
         {/* Premium dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-purple-950/80 to-black/90" />
-        <div className="absolute inset-0 bg-black/60" />
-        
-        {/* Glossy overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] via-transparent to-white/[0.01]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/95 via-purple-950/85 to-black/95" />
+        <div className="absolute inset-0 bg-black/70" />
       </div>
 
       {/* Animated grid background */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none z-10">
+      <div className="absolute inset-0 opacity-25 pointer-events-none z-10">
         <motion.div
           className="absolute inset-0 backdrop-blur-[1px]"
           animate={{
-            backgroundPosition: ['0px 0px', '60px 60px'],
+            backgroundPosition: ['0px 0px', '40px 40px'],
           }}
           transition={{
-            duration: 25,
+            duration: 15,
             repeat: Infinity,
             ease: 'linear',
           }}
           style={{
             backgroundImage: `
-              linear-gradient(rgba(168, 85, 247, 0.2) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(168, 85, 247, 0.2) 1px, transparent 1px)
+              linear-gradient(rgba(168, 85, 247, 0.3) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(168, 85, 247, 0.3) 1px, transparent 1px)
             `,
-            backgroundSize: '60px 60px',
-            filter: 'drop-shadow(0 0 15px rgba(168, 85, 247, 0.3))',
+            backgroundSize: '40px 40px',
+            filter: 'drop-shadow(0 0 10px rgba(168, 85, 247, 0.4))',
           }}
         />
       </div>
 
-      {/* Floating particles with enhanced design */}
-      {Array.from({ length: 12 }, (_, i) => (
+      {/* Floating particles */}
+      {Array.from({ length: 8 }, (_, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full"
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
-            width: Math.random() * 4 + 2,
-            height: Math.random() * 4 + 2,
-            background: `linear-gradient(45deg, rgba(168, 85, 247, ${Math.random() * 0.5 + 0.3}), rgba(236, 72, 153, ${Math.random() * 0.5 + 0.3}))`,
-            boxShadow: `0 0 ${Math.random() * 20 + 10}px rgba(168, 85, 247, 0.4)`,
+            width: Math.random() * 3 + 2,
+            height: Math.random() * 3 + 2,
+            background: `linear-gradient(45deg, rgba(168, 85, 247, ${Math.random() * 0.6 + 0.4}), rgba(236, 72, 153, ${Math.random() * 0.6 + 0.4}))`,
+            boxShadow: `0 0 ${Math.random() * 15 + 8}px rgba(168, 85, 247, 0.5)`,
           }}
           animate={{
-            y: [0, Math.random() * -100 - 50, 0],
-            x: [0, Math.random() * 60 - 30, 0],
-            opacity: [0.3, 1, 0.3],
-            scale: [1, Math.random() + 1.5, 1],
+            y: [0, Math.random() * -80 - 40, 0],
+            x: [0, Math.random() * 40 - 20, 0],
+            opacity: [0.4, 1, 0.4],
+            scale: [1, Math.random() + 1.2, 1],
           }}
           transition={{
-            duration: Math.random() * 4 + 3,
+            duration: Math.random() * 2 + 2,
             repeat: Infinity,
-            delay: Math.random() * 3,
+            delay: Math.random() * 2,
             ease: "easeInOut",
           }}
         />
       ))}
 
-      <div className="relative flex flex-col items-center z-30">
-        {/* Main content container with glassmorphism */}
+      <div className="relative flex flex-col items-center z-30 px-4">
+        {/* Main content container */}
         <motion.div
-          className="relative p-12 rounded-3xl backdrop-blur-2xl border shadow-2xl"
+          className="relative p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl backdrop-blur-2xl border shadow-2xl max-w-md w-full"
           style={{
-            background: 'linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))',
-            borderColor: 'rgba(255,255,255,0.2)',
-            boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 20px 60px rgba(0, 0, 0, 0.4)',
+            background: 'linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06))',
+            borderColor: 'rgba(255,255,255,0.25)',
+            boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 15px 50px rgba(0, 0, 0, 0.5)',
           }}
-          initial={{ scale: 0.8, opacity: 0, y: 50 }}
+          initial={{ scale: 0.8, opacity: 0, y: 30 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          {/* Enhanced logo section */}
+          {/* Logo section */}
           <motion.div
-            className="relative mb-10"
+            className="relative mb-6 sm:mb-8"
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
-            {/* Logo container with enhanced glassmorphism */}
             <motion.div
-              className="relative w-24 h-24 mx-auto rounded-2xl flex items-center justify-center overflow-hidden"
+              className="relative w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-xl sm:rounded-2xl flex items-center justify-center overflow-hidden"
               style={{
-                background: 'linear-gradient(135deg, rgba(168,85,247,0.8), rgba(236,72,153,0.6))',
-                boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 10px 30px rgba(168, 85, 247, 0.4)',
+                background: 'linear-gradient(135deg, rgba(168,85,247,0.9), rgba(236,72,153,0.7))',
+                boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 8px 25px rgba(168, 85, 247, 0.5)',
               }}
-              whileHover={{ rotate: 10, scale: 1.1 }}
-              transition={{ duration: 0.3 }}
+              whileHover={{ rotate: 8, scale: 1.05 }}
+              transition={{ duration: 0.2 }}
             >
-              {/* Animated background gradient */}
               <motion.div
-                className="absolute inset-0 opacity-80"
+                className="absolute inset-0 opacity-90"
                 style={{
                   background: 'linear-gradient(45deg, #a855f7, #ec4899, #06b6d4, #f59e0b)',
-                  backgroundSize: '400% 400%',
+                  backgroundSize: '300% 300%',
                 }}
                 animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
                 }}
                 transition={{
-                  duration: 8,
+                  duration: 4,
                   repeat: Infinity,
                   ease: "linear"
                 }}
               />
 
-              {/* Logo text */}
               <motion.div
-                className="relative z-10 text-white font-bold text-3xl"
+                className="relative z-10 text-white font-bold text-xl sm:text-2xl"
                 style={{
                   fontFamily: 'JetBrains Mono, monospace',
-                  textShadow: '0 0 20px rgba(255,255,255,0.5)',
+                  textShadow: '0 0 15px rgba(255,255,255,0.6)',
                 }}
                 animate={{
                   textShadow: [
-                    "0 0 20px rgba(255,255,255,0.5)",
-                    "0 0 30px rgba(255,255,255,0.8)",
-                    "0 0 20px rgba(255,255,255,0.5)"
+                    "0 0 15px rgba(255,255,255,0.6)",
+                    "0 0 25px rgba(255,255,255,0.9)",
+                    "0 0 15px rgba(255,255,255,0.6)"
                   ]
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 1.5,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
@@ -189,33 +183,31 @@ const Preloader: React.FC = () => {
                 SD
               </motion.div>
 
-              {/* Dynamic sparkle effects */}
               <AnimatePresence>
                 {loadingStage >= 1 && (
                   <motion.div
                     className="absolute top-1 right-1"
-                    initial={{ scale: 0, rotate: -180 }}
+                    initial={{ scale: 0, rotate: -90 }}
                     animate={{ scale: 1, rotate: 0 }}
-                    exit={{ scale: 0, rotate: 180 }}
-                    transition={{ duration: 0.5 }}
+                    exit={{ scale: 0, rotate: 90 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <Sparkles size={14} className="text-white/90 drop-shadow-lg" />
+                    <Sparkles size={12} className="text-white/95 drop-shadow-lg" />
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              {/* Glow effect */}
               <motion.div
-                className="absolute inset-0 rounded-2xl blur-xl opacity-60"
+                className="absolute inset-0 rounded-xl sm:rounded-2xl blur-lg opacity-70"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(168,85,247,0.6), rgba(236,72,153,0.4))',
+                  background: 'linear-gradient(135deg, rgba(168,85,247,0.7), rgba(236,72,153,0.5))',
                 }}
                 animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [0.6, 0.9, 0.6]
+                  scale: [1, 1.2, 1],
+                  opacity: [0.7, 0.9, 0.7]
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 2,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
@@ -225,21 +217,21 @@ const Preloader: React.FC = () => {
 
           {/* Welcome content */}
           <motion.div
-            className="text-center mb-8"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-center mb-6"
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
           >
             <motion.h1
-              className="text-3xl md:text-4xl font-bold text-white mb-3 drop-shadow-2xl"
+              className="text-2xl sm:text-3xl font-bold text-white mb-2 drop-shadow-2xl"
               style={{
                 textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
               }}
               animate={{
-                opacity: [0.8, 1, 0.8]
+                opacity: [0.9, 1, 0.9]
               }}
               transition={{
-                duration: 2.5,
+                duration: 2,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
@@ -250,14 +242,14 @@ const Preloader: React.FC = () => {
             <AnimatePresence mode="wait">
               <motion.p
                 key={loadingStage}
-                className="text-lg text-purple-200 font-medium drop-shadow-lg"
+                className="text-base sm:text-lg text-purple-200 font-medium drop-shadow-lg"
                 style={{
                   textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
                 }}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.5 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.3 }}
               >
                 {loadingStage === 0 && "Initializing Experience..."}
                 {loadingStage === 1 && "Loading Creative Vision..."}
@@ -268,32 +260,32 @@ const Preloader: React.FC = () => {
             </AnimatePresence>
           </motion.div>
 
-          {/* Enhanced loading indicators */}
+          {/* Loading indicators */}
           <motion.div
-            className="flex flex-col items-center space-y-6"
+            className="flex flex-col items-center space-y-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
+            transition={{ delay: 0.8 }}
           >
             {/* Animated dots */}
-            <div className="flex space-x-3">
+            <div className="flex space-x-2">
               {[0, 1, 2].map((i) => (
                 <motion.div
                   key={i}
-                  className="w-3 h-3 rounded-full shadow-lg"
+                  className="w-2.5 h-2.5 rounded-full shadow-lg"
                   style={{
-                    background: 'linear-gradient(45deg, rgba(168,85,247,0.8), rgba(236,72,153,0.6))',
-                    boxShadow: '0 0 15px rgba(168, 85, 247, 0.5)',
+                    background: 'linear-gradient(45deg, rgba(168,85,247,0.9), rgba(236,72,153,0.7))',
+                    boxShadow: '0 0 12px rgba(168, 85, 247, 0.6)',
                   }}
                   animate={{
-                    y: [0, -20, 0],
-                    scale: [1, 1.3, 1],
-                    opacity: [0.5, 1, 0.5]
+                    y: [0, -15, 0],
+                    scale: [1, 1.2, 1],
+                    opacity: [0.6, 1, 0.6]
                   }}
                   transition={{
-                    duration: 1.8,
+                    duration: 1.2,
                     repeat: Infinity,
-                    delay: i * 0.3,
+                    delay: i * 0.2,
                     ease: "easeInOut"
                   }}
                 />
@@ -301,26 +293,26 @@ const Preloader: React.FC = () => {
             </div>
 
             {/* Progress bar */}
-            <div className="w-80 max-w-sm">
+            <div className="w-full max-w-xs">
               <div className="flex justify-between items-center mb-2">
-                <span className="text-sm text-gray-300 font-medium drop-shadow-lg">Loading</span>
-                <span className="text-sm text-purple-300 font-bold drop-shadow-lg">
+                <span className="text-xs text-gray-300 font-medium drop-shadow-lg">Loading</span>
+                <span className="text-xs text-purple-300 font-bold drop-shadow-lg">
                   {Math.min(Math.round(progress), 100)}%
                 </span>
               </div>
               <div 
-                className="w-full h-2 rounded-full overflow-hidden backdrop-blur-sm shadow-inner"
+                className="w-full h-1.5 rounded-full overflow-hidden backdrop-blur-sm shadow-inner"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))',
-                  border: '1px solid rgba(255,255,255,0.2)',
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08))',
+                  border: '1px solid rgba(255,255,255,0.25)',
                 }}
               >
                 <motion.div
                   className="h-full rounded-full shadow-lg"
                   style={{
-                    background: 'linear-gradient(90deg, rgba(168,85,247,0.9), rgba(236,72,153,0.8), rgba(6,182,212,0.7))',
+                    background: 'linear-gradient(90deg, rgba(168,85,247,0.95), rgba(236,72,153,0.85), rgba(6,182,212,0.8))',
                     backgroundSize: '200% 100%',
-                    boxShadow: '0 0 20px rgba(168, 85, 247, 0.6)',
+                    boxShadow: '0 0 15px rgba(168, 85, 247, 0.7)',
                   }}
                   initial={{ width: 0 }}
                   animate={{ 
@@ -328,8 +320,8 @@ const Preloader: React.FC = () => {
                     backgroundPosition: ['0% 50%', '100% 50%'],
                   }}
                   transition={{ 
-                    width: { duration: 0.5, ease: "easeOut" },
-                    backgroundPosition: { duration: 2, repeat: Infinity, ease: "linear" }
+                    width: { duration: 0.3, ease: "easeOut" },
+                    backgroundPosition: { duration: 1.5, repeat: Infinity, ease: "linear" }
                   }}
                 />
               </div>
@@ -337,59 +329,59 @@ const Preloader: React.FC = () => {
 
             {/* Status icons */}
             <motion.div
-              className="flex space-x-4 mt-4"
+              className="flex space-x-3 mt-3"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.8 }}
+              transition={{ delay: 1.2 }}
             >
               {[
-                { icon: Code2, active: loadingStage >= 1 },
-                { icon: Star, active: loadingStage >= 2 },
-                { icon: Zap, active: loadingStage >= 3 },
+                { icon: Terminal, active: loadingStage >= 1 },
+                { icon: Database, active: loadingStage >= 2 },
+                { icon: Globe, active: loadingStage >= 3 },
                 { icon: ChevronRight, active: loadingStage >= 4 },
               ].map(({ icon: Icon, active }, index) => (
                 <motion.div
                   key={index}
-                  className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500
+                  className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300
                     ${active ? 'text-white shadow-lg' : 'text-gray-500'}
                   `}
                   style={{
                     background: active 
-                      ? 'linear-gradient(135deg, rgba(168,85,247,0.3), rgba(236,72,153,0.2))' 
+                      ? 'linear-gradient(135deg, rgba(168,85,247,0.4), rgba(236,72,153,0.3))' 
                       : 'transparent',
                     border: active 
-                      ? '1px solid rgba(255,255,255,0.3)' 
-                      : '1px solid rgba(255,255,255,0.1)',
+                      ? '1px solid rgba(255,255,255,0.4)' 
+                      : '1px solid rgba(255,255,255,0.15)',
                     boxShadow: active 
-                      ? '0 0 15px rgba(168, 85, 247, 0.4)' 
+                      ? '0 0 12px rgba(168, 85, 247, 0.5)' 
                       : 'none',
                   }}
                   animate={active ? {
-                    scale: [1, 1.1, 1],
-                    rotate: [0, 5, -5, 0]
+                    scale: [1, 1.08, 1],
+                    rotate: [0, 3, -3, 0]
                   } : {}}
                   transition={{
-                    duration: 2,
+                    duration: 1.5,
                     repeat: active ? Infinity : 0,
                     ease: "easeInOut"
                   }}
                 >
-                  <Icon size={16} />
+                  <Icon size={12} />
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </motion.div>
         </motion.div>
 
         {/* Footer text */}
         <motion.p
-          className="text-gray-400 text-sm mt-8 font-medium drop-shadow-lg"
+          className="text-gray-400 text-xs mt-6 font-medium drop-shadow-lg text-center"
           style={{
             textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2.5 }}
+          transition={{ delay: 1.8 }}
         >
           Crafting Digital Excellence Since 2021
         </motion.p>

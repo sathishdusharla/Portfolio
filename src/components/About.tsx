@@ -69,7 +69,7 @@ const aboutSlides = [
   },
 ];
 
-const AUTO_SLIDE_INTERVAL = 2500;
+const AUTO_SLIDE_INTERVAL = 2000;
 
 const About: React.FC = () => {
   const ref = useRef(null);
@@ -79,9 +79,9 @@ const About: React.FC = () => {
 
   useEffect(() => {
     if (isInView) {
-      controls.start({ opacity: 1, y: 0, transition: { duration: 0.8 } });
+      controls.start({ opacity: 1, y: 0, transition: { duration: 0.5 } });
     } else {
-      controls.start({ opacity: 0, y: 100, transition: { duration: 0.8 } });
+      controls.start({ opacity: 0, y: 50, transition: { duration: 0.3 } });
     }
   }, [isInView, controls]);
 
@@ -98,7 +98,7 @@ const About: React.FC = () => {
       ref={ref}
       className="min-h-screen flex items-center justify-center relative overflow-hidden snap-start"
     >
-      {/* Video Background with responsive sizing */}
+      {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video
           className="absolute inset-0 w-full h-full object-cover"
@@ -109,8 +109,6 @@ const About: React.FC = () => {
           preload="metadata"
         >
           <source src="/webanimation.mp4" type="video/mp4" />
-          <source src="/src/assets/hero-background.webm" type="video/webm" />
-          {/* Fallback image for browsers that don't support video */}
           <img 
             src="/Copy of laptopwal-2.png" 
             alt="About Background" 
@@ -118,20 +116,23 @@ const About: React.FC = () => {
           />
         </video>
         
-        {/* Dark overlay for premium look - reduced opacity for better background visibility */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-purple-950/60 to-black/80" />
-        
-        {/* Additional overlay for all devices - reduced opacity */}
         <div className="absolute inset-0 bg-black/70" />
-        
-        {/* Glossy overlay effect - slightly reduced */}
         <div className="absolute inset-0 bg-gradient-to-t from-transparent via-black/5 to-black/15" />
       </div>
 
-      {/* Enhanced glossy animated background grid - increased visibility */}
+      {/* Animated background grid */}
       <div className="absolute inset-0 opacity-15 pointer-events-none z-10">
-        <div
+        <motion.div
           className="absolute inset-0 backdrop-blur-[1px]"
+          animate={{
+            backgroundPosition: ['0px 0px', '40px 40px'],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
           style={{
             backgroundImage: `
               linear-gradient(rgba(168, 85, 247, 0.15) 1px, transparent 1px),
@@ -145,37 +146,35 @@ const About: React.FC = () => {
 
       <motion.div
         animate={controls}
-        initial={{ opacity: 0, y: 100 }}
+        initial={{ opacity: 0, y: 50 }}
         className="w-full z-30 relative"
       >
-        
-        {/* Main content */}
-        <div className="max-w-2xl sm:max-w-3xl xl:max-w-4xl mx-auto px-4 sm:px-8 xl:px-0 mt-10 sm:mt-16 mb-10 sm:mb-16">
-          {/* Heading with enhanced styling */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 mb-8">
+          {/* Heading */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.5 }}
             className="text-center mb-8 sm:mb-12"
           >
-            <h2 className="text-2xl xs:text-3xl md:text-5xl font-extrabold mb-2 sm:mb-4 tracking-tight drop-shadow-2xl">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-2 sm:mb-4 tracking-tight drop-shadow-2xl">
               <span className="text-gray-100 drop-shadow-lg">About </span>
               <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent drop-shadow-lg"
                     style={{ filter: 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.5))' }}>
                 Me
               </span>
             </h2>
-            <p className="text-sm xs:text-base md:text-lg text-gray-200 max-w-2xl mx-auto font-light drop-shadow-lg">
+            <p className="text-sm sm:text-base md:text-lg text-gray-200 max-w-2xl mx-auto font-light drop-shadow-lg">
               Full Stack Developer | AI Enthusiast | Student Leader | Building for Impact
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch max-w-5xl mx-auto">
             {/* Text content box */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
               className="flex flex-col h-full"
             >
               <div className="bg-black/30 border border-gray-400/30 rounded-2xl p-4 sm:p-6 shadow-2xl flex flex-col h-full justify-between backdrop-blur-md"
@@ -193,9 +192,9 @@ const About: React.FC = () => {
                           }}>
                       {aboutSlides[active].icon}
                     </span>
-                    <span className="text-lg xs:text-xl font-bold text-purple-200 drop-shadow-md">{aboutSlides[active].label}</span>
+                    <span className="text-lg sm:text-xl font-bold text-purple-200 drop-shadow-md">{aboutSlides[active].label}</span>
                   </div>
-                  <div className="text-gray-100 text-sm xs:text-base md:text-lg leading-relaxed mb-2 text-left drop-shadow-lg">
+                  <div className="text-gray-100 text-sm sm:text-base md:text-lg leading-relaxed mb-2 text-left drop-shadow-lg">
                     {aboutSlides[active].content}
                   </div>
                 </div>
@@ -204,29 +203,29 @@ const About: React.FC = () => {
 
             {/* Image box */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              initial={{ opacity: 0, x: 30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
               className="flex flex-col h-full"
             >
-              <div className={`relative w-full h-full rounded-2xl overflow-hidden ${aboutSlides[active].imageBg} shadow-2xl flex flex-col justify-between backdrop-blur-md`}
+              <div className={`relative w-full h-full rounded-2xl overflow-hidden ${aboutSlides[active].imageBg} shadow-2xl flex flex-col justify-between backdrop-blur-md min-h-[300px] sm:min-h-[350px]`}
                    style={{ 
                      boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 12px 40px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(168, 85, 247, 0.3)'
                    }}>
                 <div className="p-4 sm:p-5 flex flex-col items-center h-full">
                   <div className="drop-shadow-lg">{aboutSlides[active].imageText}</div>
-                  <div className="w-full h-36 xs:h-44 rounded-xl flex items-end justify-center mt-2 bg-transparent">
+                  <div className="w-full h-32 sm:h-36 md:h-44 rounded-xl flex items-end justify-center mt-2 bg-transparent">
                     <img
                       src="/forabout.png"
                       alt="Profile"
-                      className="w-24 xs:w-32 h-32 xs:h-40 object-cover rounded-xl shadow-2xl border-4 border-white/20"
+                      className="w-20 sm:w-24 md:w-32 h-28 sm:h-32 md:h-40 object-cover rounded-xl shadow-2xl border-4 border-white/20"
                       style={{ 
                         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
                       }}
                     />
                   </div>
-                  <span className="absolute bottom-3 right-4 text-white font-extrabold text-xl xs:text-2xl select-none tracking-widest drop-shadow-lg">{aboutSlides[active].logo}</span>
-                  <button className="absolute top-3 right-4 bg-black/20 text-white text-xs px-2 xs:px-3 py-1 rounded-full font-medium backdrop-blur-md hover:bg-black/30 transition shadow-lg"
+                  <span className="absolute bottom-3 right-4 text-white font-extrabold text-xl sm:text-2xl select-none tracking-widest drop-shadow-lg">{aboutSlides[active].logo}</span>
+                  <button className="absolute top-3 right-4 bg-black/20 text-white text-xs px-2 sm:px-3 py-1 rounded-full font-medium backdrop-blur-md hover:bg-black/30 transition shadow-lg"
                           style={{ 
                             backdropFilter: 'blur(15px)',
                             boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 16px rgba(0, 0, 0, 0.2)'
@@ -238,13 +237,18 @@ const About: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Enhanced glossy tags outside the box, centered below */}
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-6 sm:mt-8">
+          {/* Navigation tags */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mt-6 sm:mt-8"
+          >
             {aboutSlides.map((slide, idx) => (
               <button
                 key={slide.label}
                 onClick={() => setActive(idx)}
-                className={`flex items-center gap-2 px-3 xs:px-5 py-2 rounded-xl text-sm xs:text-base font-medium border transition backdrop-blur-md shadow-lg
+                className={`flex items-center gap-2 px-3 sm:px-4 md:px-5 py-2 rounded-xl text-xs sm:text-sm md:text-base font-medium border transition backdrop-blur-md shadow-lg
                   ${active === idx
                     ? 'bg-gradient-to-r from-purple-600/30 to-pink-600/30 text-purple-200 border-purple-400/50 shadow-purple-500/25'
                     : 'bg-black/20 text-gray-200 border-gray-400/30 hover:bg-black/30 hover:border-purple-400/40'}
@@ -263,7 +267,7 @@ const About: React.FC = () => {
                 <span className="hidden sm:inline drop-shadow-sm">{slide.label}</span>
               </button>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </section>
