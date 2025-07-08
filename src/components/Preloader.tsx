@@ -369,7 +369,7 @@ const Preloader: React.FC = () => {
                   <Icon size={12} />
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
         </motion.div>
 
