@@ -128,9 +128,9 @@ const Hero: React.FC = () => {
       <motion.div
         animate={controls}
         initial={{ opacity: 0, y: 50 }}
-        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-30 relative"
+        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-30 relative w-full"
       >
-        <div className="text-left">
+        <div className="text-left max-w-none">
           {/* Intro badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -160,7 +160,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-6"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-3 leading-tight text-left">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-3 leading-tight text-left max-w-none">
               <motion.span
                 className="block text-gray-200 mb-1"
                 initial={{ opacity: 0, x: -30 }}
@@ -208,7 +208,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.5 }}
             className="mb-8"
           >
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-4xl mx-0 leading-relaxed text-left">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-none leading-relaxed text-left">
               A passionate{' '}
               <motion.span
                 className="text-purple-300 font-semibold"

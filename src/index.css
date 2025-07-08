@@ -41,17 +41,17 @@
 
   /* Mobile-specific optimizations */
   .snap-y {
-    scroll-snap-type: none; /* Disable snap scrolling on mobile for better performance */
+    scroll-snap-type: y mandatory;
   }
   
   .snap-start {
-    scroll-snap-align: none;
+    scroll-snap-align: start;
   }
 
-  /* Reduce motion for better mobile performance */
-  * {
-    animation-duration: 0.3s !important;
-    transition-duration: 0.3s !important;
+  /* Faster animations for mobile */
+  .motion-element {
+    animation-duration: 0.3s;
+    transition-duration: 0.3s;
   }
 }
 
@@ -69,18 +69,36 @@
     object-position: center;
   }
   
-  /* Optimize animations for tablets */
-  * {
-    animation-duration: 0.4s !important;
-    transition-duration: 0.4s !important;
+  /* Medium speed animations for tablets */
+  .motion-element {
+    animation-duration: 0.4s;
+    transition-duration: 0.4s;
   }
 }
 
 /* Desktop optimizations */
 @media (min-width: 1025px) {
-  * {
-    animation-duration: 0.5s !important;
-    transition-duration: 0.5s !important;
+  .motion-element {
+    animation-duration: 0.5s;
+    transition-duration: 0.5s;
+  }
+  
+  /* Ensure proper spacing for desktop navigation */
+  main {
+    padding-left: 120px;
+  }
+}
+
+/* Navigation spacing adjustments */
+@media (min-width: 768px) {
+  .main-content {
+    margin-left: 100px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-content {
+    margin-left: 120px;
   }
 }
 
@@ -118,57 +136,16 @@ video {
   background-color: #000;
 }
 
-/* Performance optimizations */
-* {
-  will-change: auto;
-}
-
-.motion-reduce {
-  animation: none !important;
-  transition: none !important;
-}
-
 /* Preload optimization for better UX */
 @media (prefers-reduced-motion: reduce) {
   .hero-video-responsive {
     animation: none;
   }
   
-  * {
+  .motion-element {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-}
-
-/* Enhanced responsive breakpoints */
-@media (max-width: 475px) {
-  .text-responsive {
-    font-size: 0.875rem;
-  }
-  
-  .heading-responsive {
-    font-size: 1.5rem;
-  }
-}
-
-@media (min-width: 476px) and (max-width: 640px) {
-  .text-responsive {
-    font-size: 1rem;
-  }
-  
-  .heading-responsive {
-    font-size: 1.875rem;
-  }
-}
-
-@media (min-width: 641px) and (max-width: 768px) {
-  .text-responsive {
-    font-size: 1.125rem;
-  }
-  
-  .heading-responsive {
-    font-size: 2.25rem;
   }
 }
 
@@ -193,4 +170,20 @@ video {
   .backdrop-blur-md {
     backdrop-filter: blur(6px);
   }
+}
+
+/* Fast animation utilities */
+.animate-fast {
+  animation-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
+.animate-medium {
+  animation-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.animate-normal {
+  animation-duration: 0.5s;
+  transition-duration: 0.5s;
 }

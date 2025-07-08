@@ -149,7 +149,7 @@ const About: React.FC = () => {
         initial={{ opacity: 0, y: 50 }}
         className="w-full z-30 relative"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 mb-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 mb-8 w-full">
           {/* Heading */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -169,7 +169,7 @@ const About: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch w-full">
             {/* Text content box */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}

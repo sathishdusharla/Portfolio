@@ -256,22 +256,22 @@ const Navigation: React.FC = () => {
 
       {/* Desktop vertical nav */}
       <nav
-        className="hidden md:flex fixed left-0 top-1/2 -translate-y-1/2 z-50 flex-col items-center py-4 px-1 bg-black/90 rounded-[2.5rem] m-2 shadow-xl
-          w-[70px] h-[450px] 
-          lg:w-[90px] lg:h-[580px]
-          lg:py-6 lg:px-2"
+        className="hidden md:flex fixed left-4 top-1/2 -translate-y-1/2 z-50 flex-col items-center py-4 px-2 bg-black/90 rounded-[2.5rem] shadow-xl
+          w-[80px] h-[500px] 
+          lg:w-[100px] lg:h-[600px]
+          lg:py-6 lg:px-3"
       >
         {/* Animated Logo */}
-        <div className="mb-6 lg:mb-8 flex flex-col items-center">
+        <div className="mb-8 lg:mb-10 flex flex-col items-center">
           <AnimatedLogo />
         </div>
         {/* Navigation Icons */}
-        <div className="flex flex-col items-center gap-3 lg:gap-4 flex-1">
+        <div className="flex flex-col items-center gap-4 lg:gap-5 flex-1">
           {navItems.map((item) => (
             <div key={item.id} className="relative group">
               <button
                 onClick={() => handleNavClick(item)}
-                className={`flex items-center justify-center w-9 h-9 lg:w-10 lg:h-10 rounded-xl transition-all relative
+                className={`flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-xl transition-all relative
                   ${activeSection === item.id && item.available
                     ? 'text-purple-400'
                     : 'text-gray-400 hover:text-purple-300'}
@@ -287,7 +287,7 @@ const Navigation: React.FC = () => {
               </button>
               
               {/* Tooltip */}
-              <div className="absolute left-full ml-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-[70]">
+              <div className="absolute left-full ml-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-[70]">
                 <div className="bg-black/90 backdrop-blur-xl border border-white/10 rounded-lg px-3 py-2 text-sm text-white whitespace-nowrap shadow-xl">
                   {item.label}
                   {!item.available && (
@@ -299,11 +299,11 @@ const Navigation: React.FC = () => {
           ))}
         </div>
         {/* Divider and Resume at bottom */}
-        <div className="flex flex-col items-center mt-4 lg:mt-6 w-full">
-          <div className="w-7 h-px lg:w-8 bg-gray-700 my-2 lg:my-3" />
+        <div className="flex flex-col items-center mt-6 lg:mt-8 w-full">
+          <div className="w-8 h-px lg:w-10 bg-gray-700 my-3 lg:my-4" />
           <button
             onClick={goToResume}
-            className="flex items-center justify-center w-9 h-9 lg:w-10 lg:h-10 rounded-xl transition-all text-gray-400 hover:text-purple-300"
+            className="flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-xl transition-all text-gray-400 hover:text-purple-300"
             aria-label="Resume"
           >
             <FileBadge2 size={22} />
