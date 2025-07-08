@@ -8,7 +8,7 @@ const aboutSlides = [
     icon: <Code2 size={18} />,
     content: (
       <>
-        My passion for technology started early, evolving from curiosity into a drive to <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">build</span> and <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">create</span>. From coding my first website to architecting scalable systems, I thrive on solving real-world problems and bringing ideas to life through <span className=\"bg-emerald-600/80 text-white px-1 rounded font-medium">full-stack development</span>.
+        My passion for technology started early, evolving from curiosity into a drive to <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">build</span> and <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">create</span>. From coding my first website to architecting scalable systems, I thrive on solving real-world problems and bringing ideas to life through <span className="bg-emerald-600/80 text-white px-1 rounded font-medium">full-stack development</span>.
       </>
     ),
     imageText: (
@@ -24,7 +24,7 @@ const aboutSlides = [
     icon: <Sparkles size={18} />,
     content: (
       <>
-        I specialize in <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">React</span>, <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">Node.js</span>, <span className=\"bg-cyan-600/80 text-white px-1 rounded font-medium">TypeScript</span>, and <span className=\"bg-cyan-600/80 text-white px-1 rounded font-medium">Python</span>. My toolkit includes cloud platforms, databases, and modern frameworks, enabling me to deliver <span className=\"bg-emerald-600/80 text-white px-1 rounded font-medium">robust</span> and <span className=\"bg-emerald-600/80 text-white px-1 rounded font-medium">scalable</span> solutions.
+        I specialize in <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">React</span>, <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">Node.js</span>, <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">TypeScript</span>, and <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">Python</span>. My toolkit includes cloud platforms, databases, and modern frameworks, enabling me to deliver <span className="bg-emerald-600/80 text-white px-1 rounded font-medium">robust</span> and <span className="bg-emerald-600/80 text-white px-1 rounded font-medium">scalable</span> solutions.
       </>
     ),
     imageText: (
@@ -40,7 +40,7 @@ const aboutSlides = [
     icon: <Users2 size={18} />,
     content: (
       <>
-        As a <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">student leader</span> and collaborator, I've led tech clubs, organized hackathons, and mentored peers. I believe in <span className="bg-emerald-600/80 text-white px-1 rounded font-medium">teamwork</span> and <span className=\"bg-emerald-600/80 text-white px-1 rounded font-medium">community</span> to drive innovation and growth.
+        As a <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">student leader</span> and collaborator, I've led tech clubs, organized hackathons, and mentored peers. I believe in <span className="bg-emerald-600/80 text-white px-1 rounded font-medium">teamwork</span> and <span className="bg-emerald-600/80 text-white px-1 rounded font-medium">community</span> to drive innovation and growth.
       </>
     ),
     imageText: (
@@ -56,7 +56,7 @@ const aboutSlides = [
     icon: <Lightbulb size={18} />,
     content: (
       <>
-        I value <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">curiosity</span>, <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">integrity</span>, and <span className=\"bg-cyan-600/80 text-white px-1 rounded font-medium">resilience</span>. My vision is to leverage technology for positive change, building solutions that are <span className=\"bg-emerald-600/80 text-white px-1 rounded font-medium">inclusive</span> and <span className=\"bg-emerald-600/80 text-white px-1 rounded font-medium">impactful</span>.
+        I value <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">curiosity</span>, <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">integrity</span>, and <span className="bg-cyan-600/80 text-white px-1 rounded font-medium">resilience</span>. My vision is to leverage technology for positive change, building solutions that are <span className="bg-emerald-600/80 text-white px-1 rounded font-medium">inclusive</span> and <span className="bg-emerald-600/80 text-white px-1 rounded font-medium">impactful</span>.
       </>
     ),
     imageText: (
@@ -149,7 +149,7 @@ const About: React.FC = () => {
         initial={{ opacity: 0, y: 50 }}
         className="w-full z-30 relative"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 mb-8 w-full">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 mb-8">
           {/* Heading */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -169,7 +169,7 @@ const About: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch max-w-5xl mx-auto">
             {/* Text content box */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}

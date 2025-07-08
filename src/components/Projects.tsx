@@ -108,7 +108,7 @@ const Projects = () => {
         initial={{ opacity: 0, y: 50 }}
         className="w-full z-30 relative"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 mb-12 w-full">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}

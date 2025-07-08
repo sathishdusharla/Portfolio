@@ -114,7 +114,7 @@ const Skills: React.FC = () => {
         initial={{ opacity: 0, y: 30 }}
         className="w-full z-30 relative"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 mb-8 w-full">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}

@@ -22,12 +22,12 @@ function MainPage() {
       <ScrollProgress />
       <Navigation />
       <main className="snap-y snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
-        <section className="min-h-screen snap-start pl-0 md:pl-24 lg:pl-28" id="hero"><Hero /></section>
-        <section className="min-h-screen snap-start pl-0 md:pl-24 lg:pl-28" id="about"><About /></section>
-        <section className="min-h-screen snap-start pl-0 md:pl-24 lg:pl-28" id="education"><Education /></section>
-        <section className="min-h-screen snap-start pl-0 md:pl-24 lg:pl-28" id="skills"><Skills /></section>
-        <section className="min-h-screen snap-start pl-0 md:pl-24 lg:pl-28" id="projects"><Projects /></section>
-        <section className="min-h-screen snap-start pl-0 md:pl-24 lg:pl-28" id="experience"><Experience /></section>
+        <section className="min-h-screen snap-start" id="hero"><Hero /></section>
+        <section className="min-h-screen snap-start" id="about"><About /></section>
+        <section className="min-h-screen snap-start" id="education"><Education /></section>
+        <section className="min-h-screen snap-start" id="skills"><Skills /></section>
+        <section className="min-h-screen snap-start" id="projects"><Projects /></section>
+        <section className="min-h-screen snap-start" id="experience"><Experience /></section>
       </main>
       <Footer />
       <BackToTop />
